@@ -1,3 +1,25 @@
+import os
+from flask import Flask
+from threading import Thread
+
+# Create a dummy server to satisfy Render
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot is running!"
+
+def run():
+    # Render uses port 10000 by default
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 10000)))
+
+# Run the server in a separate thread so it doesn't stop the bot
+Thread(target=run).start()
+
+# --- YOUR BOT CODE STARTS HERE ---
+# (Keep all your telebot logic below this line)
+
+
 import telebot
 import requests
 import os
