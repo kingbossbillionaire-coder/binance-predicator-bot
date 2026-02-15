@@ -40,7 +40,7 @@ def get_prediction(symbol):
         data = requests.get(url, timeout=10).json()
         
         # Handle Binance API errors
-        if isinstance(data, dict) and 'code' in 
+        if isinstance(data, dict) and 'code' in data:
             return None, f"❌ Binance error for {symbol}: {data.get('msg', 'Unknown')}"
         if not data or len(data) < 15:
             return None, f"❌ Not enough data for {symbol}"
